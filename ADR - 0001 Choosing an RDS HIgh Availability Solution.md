@@ -7,14 +7,14 @@ Date: 2020-07-01
 Proposed
 
 ## Context
-Our Production AWS RDS databases are not configured for high availablity. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal to choose an offering that aligns with AWS archtectural best practices.
+Our Production AWS RDS databases are not configured for high availablity. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing an offering that aligns with AWS archtectural best practices.
 
 1. Use the RDS Multi AZ Service
 2. Use RDS read replicas
 3. Migrate to Aurora RDS Service
 
 ### Distinguishing between HA and DR:
-High Availability (HA) provides a failover solution in the event a database fails. Disaster Recovery (DR) provides a recovery solution across a geographically separated distance in the event of a disaster that causes an entire data center to fail.
+High Availability (HA) provides a failover solution in the event a database, vpc, or availability zone fails. Disaster Recovery (DR) provides a recovery solution across a geographically separated distance (multi-region) in the event of a disaster that causes an entire data center to fail.
 
 In this ADR, we select an architecture that ensures High Availability and defer Disaster Recovery to a separate ADR.
 
