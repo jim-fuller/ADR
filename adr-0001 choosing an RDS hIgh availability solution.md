@@ -15,7 +15,7 @@ High Availability (HA) provides a failover solution in the event a database, vpc
 In this ADR, we select an architecture that ensures High Availability and defer Disaster Recovery to a separate ADR.
 
 ## Criteria
-Choosing the right HA architecture should 1) align with AWS Best Architectural Practices, 2) is cost effective, and 3) minimizes or eliminates disruption to Redline Production applications using RDS.
+Choosing the right HA architecture should 1) align with AWS Best Architectural Practices, 2) is cost effective, and 3) minimizes or eliminates disruption to RedLine Production applications using RDS.
 
 ## Proposed Solutions
 
@@ -25,7 +25,7 @@ Pros:
 - Nothing to port
 - Syncronous Replication for instant db consistency at failover (hot standby) and minimal db downtime
 - One DNS Name across all standby replicas eliminates application intervention
-- 3 levels of failover using Amazon's failover technology: 1)vpc network, 2) db or ebs crashes, or 3) AZ unavailibility.
+- 3 levels of failover using Amazon's failover technology: 1)vpc network, 2) db or ebs (disk) crashes, or 3) AZ unavailibility.
 - Automatic failover (DNS updates)
 
 Cons:  
