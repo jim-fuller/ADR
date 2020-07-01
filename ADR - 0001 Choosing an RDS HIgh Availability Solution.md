@@ -9,8 +9,8 @@ Proposed
 ## Context
 Our Production AWS RDS databases are not configured for high availablity. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing an offering that aligns with AWS archtectural best practices.
 
-1. Use the RDS Multi AZ Service
-2. Use RDS read replicas
+1. Use the RDS Multi AZ
+2. Use RDS Rread Replicas
 3. Migrate to Aurora RDS Service
 
 ### Distinguishing between HA and DR:
