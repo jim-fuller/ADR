@@ -20,11 +20,27 @@ Choosing the right HA architecture should 1) align with AWS Best Architectural P
 ## Proposed Solutions
 
 ### - Use the RDS Multi AZ
+Pros:  
+- Syncronous Replication for instant db consistency at failover (hot standby) and minimal db downtime
+- One DNS Name across all standby replicas eliminates application intervention
+- 3 levels of failover: 1)vpc network, 2) db or ebs crashes, or 3) AZ unavailibility.
+
+Cons:  
+- Zero HA when AWS Region fails
+- Likely Doubles cost of RDS for each hot replica, and the network traffic to sync data.
+- Not a scaling solution
+
 ### - Use RDS Rread Replicas
+It is possible to failover with read replicas.
+- Pros:
+
+- Cons:
 ### - Migrate to Aurora RDS Service
+- Pros:
+- Cons:
 
 #### Decision
-We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances.
+We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances as it is the recommended best practice to adding HA to RDS.
 
 
 
