@@ -6,7 +6,7 @@ Date: 2018-10-05
 
 Accepted
 
-## Context
+## Context  
 One of the hardest things to track during the life of a project is the motivation behind certain decisions. A new person coming on to a project may be perplexed, baffled, delighted, or infuriated by some past decision. Without understanding the rationale or consequences, this person has only two choices:
 
 1. Blindly accept the decision.
