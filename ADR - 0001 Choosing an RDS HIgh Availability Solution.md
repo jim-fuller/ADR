@@ -7,7 +7,7 @@ Date: 2020-07-01
 Proposed
 
 ## Context
-Our Production AWS RDS instances are not configured for :
+Our Production AWS RDS databases are not configured for high availablity and disaster recovery. There exists a few ways to provide HA on RDS instances.
 
 1. Blindly accept the decision.
 
