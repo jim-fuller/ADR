@@ -7,7 +7,7 @@ Date: 2020-07-01
 Proposed
 
 ## Context
-Our Production AWS RDS databases are not configured for high availablity. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing, among other criteria, an offering that aligns with AWS archtectural best practices. 
+Our Production AWS RDS databases are not configured for high availablity which can support blue-green architectures and reduce risk. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing, among other criteria, an offering that aligns with AWS archtectural best practices. 
 
 ### Distinguishing between HA and DR:
 High Availability (HA) provides a failover solution in the event a database, vpc, or availability zone fails. Disaster Recovery (DR) provides a recovery solution across a geographically separated distance (multi-region) in the event of a disaster that causes an entire data center to fail.
@@ -19,11 +19,11 @@ Choosing the right HA architecture should 1) align with AWS Best Architectural P
 
 ## Proposed Solutions
 
-### - Use the RDS Multi AZ
+### Use the RDS Multi AZ
 Pros:  
 - Syncronous Replication for instant db consistency at failover (hot standby) and minimal db downtime
 - One DNS Name across all standby replicas eliminates application intervention
-- 3 levels of failover: 1)vpc network, 2) db or ebs crashes, or 3) AZ unavailibility.
+- 3 levels of failover using Amazon's failover technology: 1)vpc network, 2) db or ebs crashes, or 3) AZ unavailibility.
 
 Cons:  
 - Zero HA when AWS Region fails
@@ -31,18 +31,26 @@ Cons:
 - Perhaps some write latency during synchonous writes to standby replicas
 - Not a scaling solution
 
-### - Use RDS Read Replicas
+### Use RDS Read Replicas
 It is possible to create a failover solution with read replicas, though this is typically done when read replicas have already been deployed into the environment  
 
 Pros:  
 - Move Anayltic or Reporting workloads off of master db on to RR's
 - Replicas can be promoted to their own db's
 - Asyncronous reads create delayed consistencies on replicas but provide zero latency writes  
+- Replicas are available within AZ, cross AZ or Cross Region 
 
 Cons:
 - Apps must update connection config
-### - Migrate to Aurora RDS Service
+- Read replicas cannot serve db writes and have their own endpoints
+
+### Migrate to Aurora RDS Service
+An Aurora cluster is typically used for both scalability and high availability and involves a richer topology than RDS.
+
 Pros:  
+- Transparent failover  
+- is a highly distributed, high throughput database
+- 
 Cons:
 
 #### Decision
