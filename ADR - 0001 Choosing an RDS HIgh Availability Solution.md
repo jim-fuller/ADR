@@ -51,16 +51,20 @@ Cons:
 - Read replicas cannot serve db writes and have their own endpoints
 
 ### Migrate to Aurora RDS Service
-An Aurora cluster is typically used for both scalability and high availability and involves a richer topology than RDS Multi AZ for HA. It is a load balanced service.
+An Aurora cluster is typically used for both scalability and high availability and involves a richer topology and technology than RDS Multi AZ for HA. It is a load balanced service.
 
 Pros:  
 - Transparent fast failover  
-- is a highly distributed, high throughput database
+- is a highly distributed, high 
+throughput database
+- Upd to 15 nodes in cluster, master is write, the others are read only
+- Can be configured up to 15 replicas
 - Failover at all levels Region and under
 
 Cons:
 - Application [connection strings](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.BestPractices.html#AuroraPostgreSQL.BestPractices.FastFailover.Configuring.ConnectionString) must be configured for failover  
-- More to port, more to learn
+- More to port, more to learn, more to manage
+- Amazon claims it is app transparent, but I have my suspicions.
 
 #### Decision
 We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances as it is the recommended best practice to adding HA to existing RDS instances.
