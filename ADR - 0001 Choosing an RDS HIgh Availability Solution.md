@@ -7,52 +7,33 @@ Date: 2020-07-01
 Proposed
 
 ## Context
-Our Production AWS RDS databases are not configured for high availablity. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing an offering that aligns with AWS archtectural best practices.
-
-1. Use the RDS Multi AZ
-2. Use RDS Rread Replicas
-3. Migrate to Aurora RDS Service
+Our Production AWS RDS databases are not configured for high availablity. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing, among other criteria, an offering that aligns with AWS archtectural best practices. 
 
 ### Distinguishing between HA and DR:
 High Availability (HA) provides a failover solution in the event a database, vpc, or availability zone fails. Disaster Recovery (DR) provides a recovery solution across a geographically separated distance (multi-region) in the event of a disaster that causes an entire data center to fail.
 
 In this ADR, we select an architecture that ensures High Availability and defer Disaster Recovery to a separate ADR.
 
-## Decision
-We will keep a collection of records for architecturally significant decisions: those that affect the structure, non-functional characteristics, dependencies, interfaces, or construction techniques.
+## Criteria
+Choosing the right HA architecture should 1) align with AWS Best Architectural Practices, 2) is cost effective, and 3) minimizes or eliminates disruption to Redline Production applications using RDS.
 
-#### Context
-This section describes the forces at play, including technological, political, social, and so forth. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts.
+## Proposed Solutions
+
+### - Use the RDS Multi AZ
+### - Use RDS Rread Replicas
+### - Migrate to Aurora RDS Service
 
 #### Decision
-This section describes our response to these forces. It is stated in full sentences, with active voice. "We will..."
+We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances.
 
-#### Status
-A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "superseded" with a reference to its replacement.
+
 
 #### Consequences
 This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
 
-### Format
-An architecture decision record is a short text file in a format similar to an Alexandrian pattern. Each record describes a set of forces and a single decision in response to those forces. Note that the decision is the central piece here, so specific forces may appear in multiple ADRs.
-
-### Titling
-ADR documents have names that are short noun phrases. For example, `adr-0001-express-for-web-server.markdown` or `adr-0009-LDAP-for-multitenant-integration`
-
-### Numbering
-ADRs will be numbered sequentially and monotonically. Numbers will not be reused.
-
-### Location
-We will keep ADRs in the project repository under `docs/adr/adr-{NNNN}-{title}.markdown`
-
-### Language
-We will use Markdown as it is a lightweight text formatting language.
-
-### Reversal Procedure
-If a decision is reversed, we will keep the old one around, but mark it as superseded. After all, it's still useful to know that it _was_ the decision, but is no longer the decision.
-
-### Style
-The whole ADR document should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments.
+ 
+ 
+ 
 
 ## Consequences
 * One ADR describes one significant decision for a specific project. It should be something that has an effect on how the rest of the project will run.
