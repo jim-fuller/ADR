@@ -28,16 +28,22 @@ Pros:
 Cons:  
 - Zero HA when AWS Region fails
 - Likely Doubles cost of RDS for each hot replica, and the network traffic to sync data.
+- Perhaps some write latency during synchonous writes to standby replicas
 - Not a scaling solution
 
-### - Use RDS Rread Replicas
-It is possible to failover with read replicas.
-- Pros:
+### - Use RDS Read Replicas
+It is possible to create a failover solution with read replicas, though this is typically done when read replicas have already been deployed into the environment  
 
-- Cons:
+Pros:  
+- Move Anayltic or Reporting workloads off of master db on to RR's
+- Replicas can be promoted to their own db's
+- Asyncronous reads create delayed consistencies on replicas but provide zero latency writes  
+
+Cons:
+- Apps must update connection config
 ### - Migrate to Aurora RDS Service
-- Pros:
-- Cons:
+Pros:  
+Cons:
 
 #### Decision
 We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances as it is the recommended best practice to adding HA to RDS.
