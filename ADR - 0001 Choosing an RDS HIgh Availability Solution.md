@@ -21,11 +21,17 @@ Choosing the right HA architecture should 1) align with AWS Best Architectural P
 
 ### Use the RDS Multi AZ
 Pros:  
+- Easy to enable using Multi AZ property in AWS RDS Console
+- Nothing to port
 - Syncronous Replication for instant db consistency at failover (hot standby) and minimal db downtime
 - One DNS Name across all standby replicas eliminates application intervention
 - 3 levels of failover using Amazon's failover technology: 1)vpc network, 2) db or ebs crashes, or 3) AZ unavailibility.
+- Automatic failover (DNS updates)
 
 Cons:  
+- DNS cache ttl settings in applications may impact recovery to the failover 
+- 1 standby availability
+- 60 to 120 second failover
 - Zero HA when AWS Region fails
 - Likely Doubles cost of RDS for each hot replica, and the network traffic to sync data.
 - Perhaps some write latency during synchonous writes to standby replicas
@@ -45,28 +51,19 @@ Cons:
 - Read replicas cannot serve db writes and have their own endpoints
 
 ### Migrate to Aurora RDS Service
-An Aurora cluster is typically used for both scalability and high availability and involves a richer topology than RDS.
+An Aurora cluster is typically used for both scalability and high availability and involves a richer topology than RDS Multi AZ for HA. It is a load balanced service.
 
 Pros:  
-- Transparent failover  
+- Transparent fast failover  
 - is a highly distributed, high throughput database
-- 
+- Failover at all levels Region and under
+
 Cons:
+- Application [connection strings](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.BestPractices.html#AuroraPostgreSQL.BestPractices.FastFailover.Configuring.ConnectionString) must be configured for failover  
+- More to port, more to learn
 
 #### Decision
-We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances as it is the recommended best practice to adding HA to RDS.
-
-
+We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances as it is the recommended best practice to adding HA to existing RDS instances.
 
 #### Consequences
-This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
-
- 
- 
- 
-
-## Consequences
-* One ADR describes one significant decision for a specific project. It should be something that has an effect on how the rest of the project will run.
-* The consequences of one ADR are very likely to become the context for subsequent ADRs. This is also similar to Alexander's idea of a pattern language: the large-scale responses create spaces for the smaller scale to fit into.
-* Developers and project stakeholders can see the ADRs, even as the team composition changes over time.
-* The motivation behind previous decisions is visible for everyone, present and future. Nobody is left scratching their heads to understand, "What were they thinking?" and the time to change old decisions will be clear from changes in the project's context.
+TBD
