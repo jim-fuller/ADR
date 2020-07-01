@@ -7,7 +7,7 @@ Date: 2020-07-01
 Proposed
 
 ## Context
-Our Production AWS RDS databases are not configured for high availablity which can support blue-green architectures and reduce risk. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal of choosing, among other criteria, an offering that aligns with AWS archtectural best practices. 
+Our Production AWS RDS databases are not configured for high availablity which can support blue-green architectures and reduce risk. There exists a few ways to provide HA on RDS. We cover those in this document with the goal of choosing, among other criteria, an offering that aligns with AWS archtectural best practices. 
 
 ### Distinguishing between HA and DR:
 High Availability (HA) provides a failover solution in the event a database, vpc, or availability zone fails. Disaster Recovery (DR) provides a recovery solution across a geographically separated distance (multi-region) in the event of a disaster that causes an entire data center to fail.
