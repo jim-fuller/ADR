@@ -42,8 +42,8 @@ It is possible to create a failover solution with read replicas, though this is 
 
 Pros:  
 - Move Anayltic or Reporting workloads off of master db on to RR's
-- Replicas can be promoted to their own db's
-- Asyncronous reads create delayed consistencies on replicas but provide zero latency writes  
+- Replicas can be promoted to their own db's in the event the main db fails. This is a manual procedure
+- Asyncronous reads create delayed consistencies on replicas but provide zero latency writes to the main db
 - Replicas are available within AZ, cross AZ or Cross Region 
 
 Cons:
@@ -70,4 +70,6 @@ Cons:
 We will apply the RDS Multi AZ architecture to add high availability to our RDS production instances as it is the recommended best practice to adding HA to existing RDS instances.
 
 #### Consequences
-TBD
+- Choosing Aurora DB would be a part of a larger product design decision, outside of the adr scope.
+- High Availability for failover protection improves the stability of the product framework. We did not address Disaster Recovery, which should also be a part of an overall scope of the product framework.
+- Multi AZ architecture should be fairly transparent to RDS applications, but the failover conditions and alerting mechanisms should be understood prior to implementation.
