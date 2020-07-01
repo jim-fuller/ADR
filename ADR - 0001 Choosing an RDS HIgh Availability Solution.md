@@ -7,15 +7,11 @@ Date: 2020-07-01
 Proposed
 
 ## Context
-Our Production AWS RDS databases are not configured for high availablity and disaster recovery. There exists a few ways to provide HA on RDS instances.
+Our Production AWS RDS databases are not configured for high availablity and disaster recovery. There exists a few ways to provide HA on RDS instances. We cover those in this document with the goal to choose an offering that aligns with AWS archtectural best practices.
 
-1. Blindly accept the decision.
-
-    This response may be OK, if the decision is still valid. It may not be good, however, if the context has changed and the decision should really be revisited. If the project accumulates too many decisions accepted without understanding, then the development team becomes afraid to change anything and the project collapses under its own weight.
-
-2. Blindly change it.
-
-    Again, this may be OK if the decision needs to be reversed. On the other hand, changing the decision without understanding its motivation or consequences could mean damaging the project's overall value without realizing it. (E.g., the decision supported a non-functional requirement that hasn't been tested yet.)
+1. Use the RDS Multi AZ Service
+2. Use RDS read replicas
+3. Migrate to Aurora RDS Service
 
 It's better to avoid either blind acceptance or blind reversal.
 
