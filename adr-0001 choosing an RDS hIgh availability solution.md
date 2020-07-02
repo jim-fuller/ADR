@@ -18,7 +18,7 @@ In this ADR, we select an architecture that ensures High Availability and defer 
 
 ## Criteria
 
-Choosing the right HA architecture should 1) align with AWS Best Architectural Practices, 2) is cost effective, and 3) minimizes or eliminates disruption to RedLine Production applications using RDS. This measure is commonly referred to as Mean Time to Recover - MTTR.
+Choosing the right HA architecture should 1) align with AWS Best Architectural Practices, 2) is cost effective, and 3) minimizes or eliminates disruption to RedLine Production applications using RDS. This measure is commonly referred to as Mean Time to Recovery - MTTR.
 
 ## Proposed Solutions
 
