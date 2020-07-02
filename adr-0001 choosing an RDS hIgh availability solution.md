@@ -37,7 +37,6 @@ Cons:
 
 - DNS cache ttl settings in applications may impact recovery to the failover
 - 1 standby availability
-- 60 to 120 second failover
 - Zero HA when AWS Region fails
 - Likely Doubles cost of RDS for each hot replica, and the network traffic to sync data.
 - Perhaps some write latency during synchonous writes to standby replicas
@@ -55,7 +54,7 @@ Pros:
 - Replicas are available within AZ, cross AZ or Cross Region
 
 Cons:
-
+- Failover is manual
 - Apps must update connection config
 - Read replicas cannot serve db writes and have their own endpoints
 
